@@ -140,7 +140,7 @@ func ParseWithSpecialTableName(dest interface{}, cacheStore *sync.Map, namer Nam
 	}
 
 	if tableName == "" {
-		tableName = GetTableNameEx(modelType)
+		tableName = GetTableNameEx(modelType) // added by ludanfeng@zj.tech
 	}
 
 	schema := &Schema{
