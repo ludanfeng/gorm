@@ -303,7 +303,14 @@ func (db *DB) Session(config *Session) *DB {
 
 // WithContext change current instance db's context to ctx
 func (db *DB) WithContext(ctx context.Context) *DB {
-	return db.Session(&Session{Context: ctx})
+	// changed by ludanfeng@zj.tech
+	// set logger for session
+	s := &Session{Context: ctx}
+	if l, ok := ctx.(logger.Interface); ok {
+		s.Logger = l
+	}
+	// end
+	return db.Session(s)
 }
 
 // Debug start debug mode
